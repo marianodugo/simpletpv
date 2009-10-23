@@ -22,4 +22,6 @@
   
   <source path="shared" />
   <source path="client" />
+  
+  <stylesheet src='style.css' /> 
 </module>
