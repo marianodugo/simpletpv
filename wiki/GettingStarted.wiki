@@ -2,12 +2,11 @@
 
 = Introduction =
 
-Add your content here.
+This is a short introduction to the installation.
 
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  * Create a new Web Application Project with Eclipse IDE, ensure you check Google SDKs (GWT and GAE)
+
+  * "SVN Checkout" to the your new project (src and lib).
