@@ -54,11 +54,22 @@ public class TopPresenter extends WidgetPresenter<TopPresenter.Display> {
 
 			@Override
 			public void onClick(final ClickEvent event) {
-				/*dispatcher.execute(
+				dispatcher.execute(
 						new SendGreeting("test"),
 						new DisplayCallback<SendGreetingResult>(display) {
+
+							@Override
+							protected void handleFailure(Throwable e) {
+								Window.alert("FAILURE");
+							}
+
+							@Override
+							protected void handleSuccess(
+									SendGreetingResult value) {
+								Window.alert("SUCCESS");
+							}
 					
-				});*/
+				});
 			}
 			
 		});
