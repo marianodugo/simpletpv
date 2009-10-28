@@ -3,10 +3,20 @@
  */
 package simpletpv.client.mvp;
 
+import simpletpv.client.localization.AppLocale;
+
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 
 /**
  * @author MCOSTA
@@ -14,6 +24,8 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class MainView extends Composite implements MainPresenter.Display  {
 	private final DockPanel outer;
+	private TextBox nameTextBox;
+	private Button submitButton;
 
 	public MainView() {
 		outer = new DockPanel();
@@ -22,7 +34,22 @@ public class MainView extends Composite implements MainPresenter.Display  {
 		outer.setBorderWidth(1);
 		outer.setStyleName("main");
 		outer.add(new HTML("Main West"), DockPanel.WEST);
-		outer.add(new HTML("Main East"), DockPanel.EAST);
+		outer.add(createForm(), DockPanel.EAST);
+	}
+	
+	private Widget createForm() {
+		HorizontalPanel layout = new HorizontalPanel();
+		
+		layout.setSpacing(5);
+
+		nameTextBox = new TextBox();
+        submitButton = new Button(AppLocale.constants().submit());
+        
+		layout.add(new HTML(AppLocale.constants().name() + " :"));
+		layout.add(nameTextBox);
+		layout.add(submitButton);
+		
+		return layout;
 	}
 	
 	@Override
@@ -36,5 +63,15 @@ public class MainView extends Composite implements MainPresenter.Display  {
 
 	@Override
 	public void stopProcessing() {
+	}
+
+	@Override
+	public HasValue<String> getNameTextBox() {
+		return nameTextBox;
+	}
+
+	@Override
+	public HasClickHandlers getSubmitButton() {
+		return submitButton;
 	}
 }

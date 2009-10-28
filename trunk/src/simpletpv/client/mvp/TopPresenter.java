@@ -37,9 +37,7 @@ public class TopPresenter extends WidgetPresenter<TopPresenter.Display> {
 	public TopPresenter(final Display display, final EventBus eventBus
 			, final DispatchAsync dispatcher) {
 		super(display, eventBus);
-
 		this.dispatcher = dispatcher;
-
 		bind();
 	}
 
@@ -60,13 +58,13 @@ public class TopPresenter extends WidgetPresenter<TopPresenter.Display> {
 
 							@Override
 							protected void handleFailure(Throwable e) {
-								Window.alert("FAILURE");
+								Window.alert(e.getMessage());
 							}
 
 							@Override
 							protected void handleSuccess(
 									SendGreetingResult value) {
-								Window.alert("SUCCESS");
+								Window.alert("SUCCESS: " + value.getName());
 							}
 					
 				});
