@@ -23,5 +23,5 @@
   <source path="shared" />
   <source path="client" />
   
-  <stylesheet src='style.css' /> 
+  <stylesheet src='default.css' /> 
 </module>
