@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -25,13 +26,20 @@ public class MainView extends Composite implements MainPresenter.Display  {
 	private Button submitButton;
 
 	public MainView() {
+		VerticalPanel eastPanel = new VerticalPanel();
+		
 		outer = new DockPanel();
 		initWidget(outer);
 		
 		outer.setBorderWidth(1);
 		outer.setStyleName("main");
 		outer.add(new HTML("Main West"), DockPanel.WEST);
-		outer.add(createForm(), DockPanel.EAST);
+		
+		
+		eastPanel.add(new HTML("Simple Remote Procedure Call"));
+		eastPanel.add(createForm());
+		
+		outer.add(eastPanel, DockPanel.EAST);
 	}
 	
 	private Widget createForm() {
