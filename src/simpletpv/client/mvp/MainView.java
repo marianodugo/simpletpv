@@ -36,7 +36,7 @@ public class MainView extends Composite implements MainPresenter.Display  {
 		outer.add(new HTML("Main West"), DockPanel.WEST);
 		
 		
-		eastPanel.add(new HTML("Simple Remote Procedure Call"));
+		eastPanel.add(new HTML(AppLocale.constants().simple_rpc()));
 		eastPanel.add(createForm());
 		
 		outer.add(eastPanel, DockPanel.EAST);

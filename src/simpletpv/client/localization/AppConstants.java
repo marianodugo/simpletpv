@@ -13,4 +13,5 @@ public interface AppConstants extends Constants {
 	String name();
 	String submit();
 	String err_toolong();
+	String simple_rpc();
 }
