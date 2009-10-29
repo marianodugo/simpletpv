@@ -4,8 +4,10 @@ import net.customware.gwt.dispatch.shared.Result;
 
 public class SendGreetingResult implements Result {
 
-	private static final long serialVersionUID = 7917449246674223581L;
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String message;
 

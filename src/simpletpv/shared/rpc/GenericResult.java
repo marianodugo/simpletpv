@@ -15,11 +15,11 @@ public class GenericResult implements Result {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	private String message = null;
 	private boolean success = true;
 	
-	public GenericResult() {
+	@SuppressWarnings("unused")
+	private GenericResult() {
 	}
 	
 	public GenericResult(String message, boolean success) {

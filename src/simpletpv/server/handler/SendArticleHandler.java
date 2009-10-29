@@ -23,10 +23,10 @@ public class SendArticleHandler implements
 	}
 
 	@Override
-	public GenericResult execute(SendArticle action, ExecutionContext context)
-			throws ActionException {
+	public GenericResult execute(final SendArticle action, 
+			final ExecutionContext context) throws ActionException {
 		try {
-			return new GenericResult("OK", true);
+			return new GenericResult(action.getArticle(), true);
 		} catch(Exception cause) {
 			throw new ActionException(cause);
 		}
