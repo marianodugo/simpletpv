@@ -10,6 +10,7 @@ import com.google.gwt.i18n.client.Constants;
  *
  */
 public interface AppConstants extends Constants {
+	String loading();
 	String name();
 	String submit();
 	String err_toolong();
