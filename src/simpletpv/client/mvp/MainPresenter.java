@@ -6,8 +6,6 @@ package simpletpv.client.mvp;
 import simpletpv.client.localization.AppLocale;
 import simpletpv.shared.rpc.GenericResult;
 import simpletpv.shared.rpc.SendArticle;
-import simpletpv.shared.rpc.SendGreeting;
-import simpletpv.shared.rpc.SendGreetingResult;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.DisplayCallback;
 import net.customware.gwt.presenter.client.EventBus;
