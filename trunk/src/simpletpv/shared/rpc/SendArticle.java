@@ -15,8 +15,11 @@ public class SendArticle implements Action<GenericResult> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	private String name;
+	
+	@SuppressWarnings("unused")
+	private SendArticle() {
+	}
 	
 	public SendArticle(final String name) {
 		this.name = name;

@@ -3,8 +3,11 @@
  */
 package simpletpv.client.mvp;
 
+import simpletpv.client.localization.AppLocale;
 import simpletpv.shared.rpc.GenericResult;
 import simpletpv.shared.rpc.SendArticle;
+import simpletpv.shared.rpc.SendGreeting;
+import simpletpv.shared.rpc.SendGreetingResult;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.DisplayCallback;
 import net.customware.gwt.presenter.client.EventBus;
@@ -53,7 +56,10 @@ public class MainPresenter extends WidgetPresenter<MainPresenter.Display> {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				doSend();
+				if(display.getNameTextBox().getValue().length() > 25)
+					Window.alert(AppLocale.constants().err_toolong());
+				else
+					doSend();
 			}
 			
 		});
@@ -61,7 +67,7 @@ public class MainPresenter extends WidgetPresenter<MainPresenter.Display> {
 	
 	private void doSend() {
 		dispatcher.execute(
-				new SendArticle("lalala"), 
+				new SendArticle(display.getNameTextBox().getValue()),
 				new DisplayCallback<GenericResult>(display) {
 
 					@Override
