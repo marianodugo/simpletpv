@@ -6,7 +6,6 @@ package simpletpv.client.mvp;
 import simpletpv.shared.events.LoadingEvent;
 import simpletpv.shared.events.LoadingEventHandler;
 
-import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 
 import net.customware.gwt.presenter.client.EventBus;

@@ -5,8 +5,10 @@ package simpletpv.client.mvp;
 
 import simpletpv.client.localization.AppLocale;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -16,16 +18,17 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class LoadingView extends PopupPanel 
 		implements LoadingPresenter.Display {
-	
-	private final FlowPanel outer = new FlowPanel();
-	
-	public LoadingView() {
-		//final Image ajaxImage = new Image("path_to_ajax_wait_image");
-		final Grid grid = new Grid(1, 2);
 
-		//grid.setWidget(0, 0, ajaxImage);
+	private final FlowPanel outer = new FlowPanel();
+
+	public LoadingView() {
+		final Grid grid = new Grid(1, 2);
+		final Image ajaxImage = new Image(
+				GWT.getModuleName() + "/img/ajax-loader.gif");
+
+		grid.setWidget(0, 0, ajaxImage);
 		grid.setText(0, 1, AppLocale.constants().loading());
-		
+
 		outer.add(grid);
 		add(outer);
 	}
