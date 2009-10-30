@@ -5,6 +5,8 @@ package simpletpv.client.mvp;
 
 import simpletpv.client.localization.AppLocale;
 import simpletpv.shared.events.LoadingEvent;
+import simpletpv.shared.events.SendArticleEvent;
+import simpletpv.shared.events.SendArticleEventHandler;
 import simpletpv.shared.rpc.GenericResult;
 import simpletpv.shared.rpc.SendArticle;
 import net.customware.gwt.dispatch.client.DispatchAsync;
@@ -28,6 +30,8 @@ import com.google.inject.Inject;
  */
 public class MainPresenter extends WidgetPresenter<MainPresenter.Display> {
 	public interface Display extends WidgetDisplay {
+		public String getWestLabel();
+		public void setWestLabel(String westLabel);
 		public HasValue<String> getNameTextBox();
 		public HasClickHandlers getSubmitButton();
 	}
@@ -51,6 +55,16 @@ public class MainPresenter extends WidgetPresenter<MainPresenter.Display> {
 
 	@Override
 	protected void onBind() {
+		registerHandler(eventBus.addHandler(SendArticleEvent.TYPE,
+				new SendArticleEventHandler() {
+
+					@Override
+					public void onSendArticle(SendArticleEvent event) {
+						display.setWestLabel("new value entered");
+					}
+			
+		}));
+		
 		display.getSubmitButton().addClickHandler(new ClickHandler() {
 
 			@Override
@@ -79,7 +93,7 @@ public class MainPresenter extends WidgetPresenter<MainPresenter.Display> {
 					@Override
 					protected void handleSuccess(GenericResult value) {
 						eventBus.fireEvent(new LoadingEvent(true));
-						Window.alert("SUCCESS: " + value.getMessage());
+						eventBus.fireEvent(new SendArticleEvent());
 					}
 					
 				});

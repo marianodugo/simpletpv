@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -22,23 +23,30 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class MainView extends Composite implements MainPresenter.Display  {
 	private final DockPanel outer;
+	
+	private Label westLabel;
+	
 	private TextBox nameTextBox;
 	private Button submitButton;
 
 	public MainView() {
 		VerticalPanel eastPanel = new VerticalPanel();
+		VerticalPanel westPanel = new VerticalPanel();
 		
 		outer = new DockPanel();
 		initWidget(outer);
 		
 		outer.setBorderWidth(1);
 		outer.setStyleName("main");
-		outer.add(new HTML("Main West"), DockPanel.WEST);
-		
+
+		westLabel = new Label("no name");
+		westPanel.add(new HTML("Main West"));
+		westPanel.add(westLabel);
 		
 		eastPanel.add(new HTML(AppLocale.constants().simple_rpc()));
 		eastPanel.add(createForm());
 		
+		outer.add(westPanel, DockPanel.WEST);
 		outer.add(eastPanel, DockPanel.EAST);
 	}
 	
@@ -56,7 +64,7 @@ public class MainView extends Composite implements MainPresenter.Display  {
 		
 		return layout;
 	}
-	
+
 	@Override
 	public Widget asWidget() {
 		return this;
@@ -78,5 +86,15 @@ public class MainView extends Composite implements MainPresenter.Display  {
 	@Override
 	public HasClickHandlers getSubmitButton() {
 		return submitButton;
+	}
+
+	@Override
+	public String getWestLabel() {
+		return this.westLabel.getText();
+	}
+
+	@Override
+	public void setWestLabel(String westLabel) {
+		this.westLabel.setText(westLabel);
 	}
 }
