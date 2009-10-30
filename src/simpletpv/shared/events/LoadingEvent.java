@@ -25,7 +25,7 @@ public class LoadingEvent extends GwtEvent<LoadingEventHandler> {
 
 	@Override
 	protected void dispatch(LoadingEventHandler handler) {
-		handler.onLoading(this.show);
+		handler.onLoading(show);
 	}
 
 	@Override
