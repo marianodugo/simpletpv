@@ -65,20 +65,20 @@ public class MainPresenter extends WidgetPresenter<MainPresenter.Display> {
 	}
 	
 	private void doSend() {
-		eventBus.fireEvent(new LoadingEvent(true));
+		eventBus.fireEvent(new LoadingEvent(false));
 		dispatcher.execute(
 				new SendArticle(display.getNameTextBox().getValue()),
 				new DisplayCallback<GenericResult>(display) {
 
 					@Override
 					protected void handleFailure(Throwable e) {
-						eventBus.fireEvent(new LoadingEvent(false));
+						eventBus.fireEvent(new LoadingEvent(true));
 						Window.alert("FAILURE: " + e.getCause());
 					}
 
 					@Override
 					protected void handleSuccess(GenericResult value) {
-						eventBus.fireEvent(new LoadingEvent(false));
+						eventBus.fireEvent(new LoadingEvent(true));
 						Window.alert("SUCCESS: " + value.getMessage());
 					}
 					

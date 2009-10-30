@@ -5,7 +5,6 @@ package simpletpv.client.mvp;
 
 import simpletpv.client.localization.AppLocale;
 
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -23,8 +22,6 @@ public class LoadingView extends PopupPanel
 	public LoadingView() {
 		//final Image ajaxImage = new Image("path_to_ajax_wait_image");
 		final Grid grid = new Grid(1, 2);
-		
-		Window.alert("CARGANDO NENG");
 
 		//grid.setWidget(0, 0, ajaxImage);
 		grid.setText(0, 1, AppLocale.constants().loading());

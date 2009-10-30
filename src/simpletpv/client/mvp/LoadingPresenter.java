@@ -6,6 +6,7 @@ package simpletpv.client.mvp;
 import simpletpv.shared.events.LoadingEvent;
 import simpletpv.shared.events.LoadingEventHandler;
 
+import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 
 import net.customware.gwt.presenter.client.EventBus;
@@ -39,7 +40,7 @@ public class LoadingPresenter extends
 
 	@Override
 	protected void onBind() {
-		registerHandler(this.eventBus.addHandler(LoadingEvent.TYPE, 
+		registerHandler(eventBus.addHandler(LoadingEvent.TYPE, 
 				new LoadingEventHandler() {
 
 					@Override
