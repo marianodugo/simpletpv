@@ -13,9 +13,6 @@ import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.DisplayCallback;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.place.Place;
-import net.customware.gwt.presenter.client.place.PlaceRequest;
-import net.customware.gwt.presenter.client.widget.WidgetDisplay;
-import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -28,8 +25,8 @@ import com.google.inject.Inject;
  * @author MCOSTA
  *
  */
-public class MainPresenter extends WidgetPresenter<MainPresenter.Display> {
-	public interface Display extends WidgetDisplay {
+public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
+	public interface Display extends AbstractPresenter.Display {
 		public String getWestLabel();
 		public void setWestLabel(String westLabel);
 		public HasValue<String> getNameTextBox();
@@ -97,21 +94,5 @@ public class MainPresenter extends WidgetPresenter<MainPresenter.Display> {
 					}
 					
 				});
-	}
-
-	@Override
-	protected void onPlaceRequest(PlaceRequest request) {
-	}
-
-	@Override
-	protected void onUnbind() {		
-	}
-
-	@Override
-	public void refreshDisplay() {		
-	}
-
-	@Override
-	public void revealDisplay() {		
 	}
 }

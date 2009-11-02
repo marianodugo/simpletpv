@@ -16,7 +16,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author MCOSTA
  *
  */
-public class LoadingView extends PopupPanel 
+public class LoadingView extends PopupPanel	
 		implements LoadingPresenter.Display {
 
 	private final FlowPanel outer = new FlowPanel();

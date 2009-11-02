@@ -4,17 +4,15 @@
 package simpletpv.client.mvp;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
 
 /**
  * @author MCOSTA
  *
  */
-public class TopView extends Composite implements TopPresenter.Display  {
+public class TopView extends AbstractView implements TopPresenter.Display  {
 	private final HorizontalPanel outer;
 	private final VerticalPanel inner;
 	private final Hyperlink topHyperlink;
@@ -41,16 +39,4 @@ public class TopView extends Composite implements TopPresenter.Display  {
 		return topHyperlink;
 	}
 
-	@Override
-	public Widget asWidget() {
-		return this;
-	}
-
-	@Override
-	public void startProcessing() {
-	}
-
-	@Override
-	public void stopProcessing() {
-	}
 }

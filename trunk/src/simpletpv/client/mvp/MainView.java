@@ -7,7 +7,6 @@ import simpletpv.client.localization.AppLocale;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasValue;
@@ -21,7 +20,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author MCOSTA
  *
  */
-public class MainView extends Composite implements MainPresenter.Display  {
+public class MainView extends AbstractView implements MainPresenter.Display  {
 	private final DockPanel outer;
 	
 	private Label westLabel;
@@ -63,19 +62,6 @@ public class MainView extends Composite implements MainPresenter.Display  {
 		layout.add(submitButton);
 		
 		return layout;
-	}
-
-	@Override
-	public Widget asWidget() {
-		return this;
-	}
-
-	@Override
-	public void startProcessing() {
-	}
-
-	@Override
-	public void stopProcessing() {
 	}
 
 	@Override

@@ -10,17 +10,14 @@ import com.google.inject.Inject;
 
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.place.Place;
-import net.customware.gwt.presenter.client.place.PlaceRequest;
-import net.customware.gwt.presenter.client.widget.WidgetDisplay;
-import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
 /**
  * @author MCOSTA
  *
  */
 public class LoadingPresenter extends 
-		WidgetPresenter<LoadingPresenter.Display> {
-	public interface Display extends WidgetDisplay {
+		AbstractPresenter<LoadingPresenter.Display> {
+	public interface Display extends AbstractPresenter.Display {
 		public void showWidget();
 	}
 	
@@ -51,29 +48,5 @@ public class LoadingPresenter extends
 						}
 					}			
 		}));
-	}
-
-	@Override
-	protected void onPlaceRequest(PlaceRequest request) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void onUnbind() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void refreshDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void revealDisplay() {
-		// TODO Auto-generated method stub
-		
 	}
 }
