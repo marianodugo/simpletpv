@@ -10,7 +10,6 @@ import java.io.Serializable;
  *
  */
 public abstract class AbstractArticle implements Serializable {
-
 	/**
 	 * 
 	 */
