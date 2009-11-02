@@ -1,0 +1,28 @@
+
+VIEW
+------------------------
+AbstractView
+	AbstractCompositeView
+		TopView
+		MainView
+		BottomView
+
+	AbstarctPopupView
+		LoadingView
+
+PRESENTATION
+------------------------
+AbstractPresenter
+	TopPresenter
+	MainPresenter
+	BottomPresenter
+	
+	LoadingPresenter
+
+MODEL
+------------------------
+
+
+
+
+
