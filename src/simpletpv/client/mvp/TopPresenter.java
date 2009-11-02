@@ -11,16 +11,13 @@ import com.google.inject.Inject;
 
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.place.Place;
-import net.customware.gwt.presenter.client.place.PlaceRequest;
-import net.customware.gwt.presenter.client.widget.WidgetDisplay;
-import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
 /**
  * @author MCOSTA
  *
  */
-public class TopPresenter extends WidgetPresenter<TopPresenter.Display> {
-	public interface Display extends WidgetDisplay {
+public class TopPresenter extends AbstractPresenter<TopPresenter.Display> {
+	public interface Display extends AbstractPresenter.Display {
 		public HasClickHandlers getTopHyperlink();
 	}
 
@@ -47,21 +44,5 @@ public class TopPresenter extends WidgetPresenter<TopPresenter.Display> {
 			}
 			
 		});
-	}
-
-	@Override
-	protected void onPlaceRequest(PlaceRequest request) {
-	}
-
-	@Override
-	protected void onUnbind() {		
-	}
-
-	@Override
-	public void refreshDisplay() {		
-	}
-
-	@Override
-	public void revealDisplay() {		
 	}
 }
