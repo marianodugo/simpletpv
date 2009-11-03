@@ -3,10 +3,15 @@
  */
 package simpletpv.client.mvp;
 
+import java.util.List;
+
 import simpletpv.client.localization.AppLocale;
+import simpletpv.shared.entity.Article;
 import simpletpv.shared.event.LoadingEvent;
 import simpletpv.shared.event.SendArticleEvent;
 import simpletpv.shared.event.SendArticleEventHandler;
+import simpletpv.shared.rpc.FetchArticles;
+import simpletpv.shared.rpc.FetchArticlesResult;
 import simpletpv.shared.rpc.GenericResult;
 import simpletpv.shared.rpc.SendArticle;
 import net.customware.gwt.dispatch.client.DispatchAsync;
@@ -27,7 +32,7 @@ import com.google.inject.Inject;
  */
 public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 	public interface Display extends AbstractPresenter.Display {
-		public String getWestLabel();
+		public void setListArticles(String listArticles);
 		public void setWestLabel(String westLabel);
 		public HasValue<String> getNameTextBox();
 		public HasClickHandlers getSubmitButton();
@@ -58,6 +63,9 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 					@Override
 					public void onSendArticle(SendArticleEvent event) {
 						display.setWestLabel("new value entered");
+						//display.setListArticles("pepe");
+						
+						doFetchAllArticles();
 					}
 			
 		}));
@@ -73,6 +81,32 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 			}
 			
 		});
+	}
+	
+	private void doFetchAllArticles() {
+		dispatcher.execute(
+				new FetchArticles(), 
+				new DisplayCallback<FetchArticlesResult>(display) {
+
+					@Override
+					protected void handleFailure(Throwable e) {
+						Window.alert("FAILURE: " + e.getMessage());
+					}
+
+					@Override
+					protected void handleSuccess(FetchArticlesResult value) {
+						List<Article> results = value.getArticles();
+						String strdata = new String();
+
+						for (Article item : results) {
+							strdata += item.getId()
+								+ item.getDescription() + "<br>";
+						}
+						
+						display.setListArticles(strdata);
+					}
+					
+				});
 	}
 	
 	private void doSend() {

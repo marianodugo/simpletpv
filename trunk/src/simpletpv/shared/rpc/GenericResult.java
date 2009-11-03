@@ -10,7 +10,6 @@ import net.customware.gwt.dispatch.shared.Result;
  *
  */
 public class GenericResult implements Result {
-
 	/**
 	 * 
 	 */
