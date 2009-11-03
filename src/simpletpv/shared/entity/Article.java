@@ -23,7 +23,8 @@ public class Article extends AbstractArticle implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	//@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
 	private Long id;
 	
 	@Persistent
