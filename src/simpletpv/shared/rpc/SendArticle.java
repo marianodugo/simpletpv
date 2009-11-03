@@ -10,7 +10,6 @@ import net.customware.gwt.dispatch.shared.Action;
  *
  */
 public class SendArticle implements Action<GenericResult> {
-
 	/**
 	 * 
 	 */

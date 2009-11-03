@@ -3,6 +3,7 @@
  */
 package simpletpv.server.handler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -12,62 +13,57 @@ import com.google.inject.Inject;
 
 import simpletpv.server.PMF;
 import simpletpv.shared.entity.Article;
-import simpletpv.shared.rpc.GenericResult;
-import simpletpv.shared.rpc.SendArticle;
+import simpletpv.shared.rpc.FetchArticles;
+import simpletpv.shared.rpc.FetchArticlesResult;
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.shared.ActionException;
 
 /**
- * @author MCOSTA
+ * @author mcosta
  *
  */
-public class SendArticleHandler implements 
-		ActionHandler<SendArticle, GenericResult> {
+public class FetchArticlesHandler implements 
+		ActionHandler<FetchArticles, FetchArticlesResult> {
 	
 	@Inject
-	public SendArticleHandler() {
+	public FetchArticlesHandler() {
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public GenericResult execute(final SendArticle action, 
+	public FetchArticlesResult execute(final FetchArticles action, 
 			final ExecutionContext context) throws ActionException {
-		
+
 		try {
-			
+			List<Article> results;
 			PersistenceManager pm = PMF.get().getPersistenceManager();
-			Article a = new Article(action.getArticle());
 			Query query = pm.newQuery(Article.class);
-			query.setOrdering("id asc");
+			query.setOrdering("id desc");
 
 			try {
-				List<Article> results = (List<Article>) query.execute();
-				if(results.size() >= 10) {
-					pm.deletePersistent(results.get(0));
-				}
-				
-				pm.makePersistent(a);
+				results = (List<Article>) query.execute();
 			} finally {
-				pm.close();
+				query.closeAll();
 			}
 			
-			return new GenericResult(action.getArticle(), true);
-		} catch(Exception cause) {
-			throw new ActionException(cause);
+			List<Article> copy = new ArrayList<Article>();
+			copy.addAll(results);
+			
+			return new FetchArticlesResult(copy);
+		} catch(Exception e) {
+			throw new ActionException(e);
 		}
 	}
 
 	@Override
-	public Class<SendArticle> getActionType() {
-		return SendArticle.class;
+	public Class<FetchArticles> getActionType() {
+		return FetchArticles.class;
 	}
 
 	@Override
-	public void rollback(SendArticle arg0, GenericResult arg1,
+	public void rollback(FetchArticles arg0, FetchArticlesResult arg1,
 			ExecutionContext arg2) throws ActionException {
 		// TODO Auto-generated method stub
-		
 	}
-
 }

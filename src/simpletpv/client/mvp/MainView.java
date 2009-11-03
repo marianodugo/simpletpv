@@ -22,29 +22,30 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class MainView extends AbstractView implements MainPresenter.Display  {
 	private final DockPanel outer;
-	
+	private HTML listArticles;
 	private Label westLabel;
-	
 	private TextBox nameTextBox;
 	private Button submitButton;
 
 	public MainView() {
 		VerticalPanel eastPanel = new VerticalPanel();
 		VerticalPanel westPanel = new VerticalPanel();
-		
+
 		outer = new DockPanel();
 		initWidget(outer);
-		
+
 		outer.setBorderWidth(1);
 		outer.setStyleName("main");
 
 		westLabel = new Label("no name");
+		listArticles = new HTML();
 		westPanel.add(new HTML("Main West"));
+		westPanel.add(listArticles);
 		westPanel.add(westLabel);
-		
+
 		eastPanel.add(new HTML(AppLocale.constants().simple_rpc()));
 		eastPanel.add(createForm());
-		
+
 		outer.add(westPanel, DockPanel.WEST);
 		outer.add(eastPanel, DockPanel.EAST);
 	}
@@ -75,12 +76,12 @@ public class MainView extends AbstractView implements MainPresenter.Display  {
 	}
 
 	@Override
-	public String getWestLabel() {
-		return this.westLabel.getText();
+	public void setWestLabel(String westLabel) {
+		this.westLabel.setText(westLabel);
 	}
 
 	@Override
-	public void setWestLabel(String westLabel) {
-		this.westLabel.setText(westLabel);
+	public void setListArticles(String listArticles) {
+		this.listArticles.setHTML(listArticles);
 	}
 }

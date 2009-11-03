@@ -1,5 +1,6 @@
 package simpletpv.server.guice;
 
+import simpletpv.server.handler.FetchArticlesHandler;
 import simpletpv.server.handler.SendArticleHandler;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
@@ -11,5 +12,6 @@ public class AppActionHandlerModule extends ActionHandlerModule {
 	@Override
 	protected void configureHandlers() {
 		bindHandler(SendArticleHandler.class);
+		bindHandler(FetchArticlesHandler.class);
 	}
 }

@@ -28,6 +28,13 @@ public class Article extends AbstractArticle implements Serializable {
 	
 	@Persistent
 	private String description;
+	
+	//@Persistent
+	//private Date date;
+	
+	@SuppressWarnings("unused")
+	private Article() {
+	}
 
 	/**
 	 * @param description
