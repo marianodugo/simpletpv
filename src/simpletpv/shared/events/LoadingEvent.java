@@ -1,7 +1,7 @@
 /**
  * 
  */
-package simpletpv.shared.events;
+package simpletpv.shared.event;
 
 import com.google.gwt.event.shared.GwtEvent;
 
