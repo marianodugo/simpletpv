@@ -3,8 +3,8 @@
  */
 package simpletpv.client.mvp;
 
-import simpletpv.shared.events.LoadingEvent;
-import simpletpv.shared.events.LoadingEventHandler;
+import simpletpv.shared.event.LoadingEvent;
+import simpletpv.shared.event.LoadingEventHandler;
 
 import com.google.inject.Inject;
 
