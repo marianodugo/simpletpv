@@ -4,9 +4,9 @@
 package simpletpv.client.mvp;
 
 import simpletpv.client.localization.AppLocale;
-import simpletpv.shared.events.LoadingEvent;
-import simpletpv.shared.events.SendArticleEvent;
-import simpletpv.shared.events.SendArticleEventHandler;
+import simpletpv.shared.event.LoadingEvent;
+import simpletpv.shared.event.SendArticleEvent;
+import simpletpv.shared.event.SendArticleEventHandler;
 import simpletpv.shared.rpc.GenericResult;
 import simpletpv.shared.rpc.SendArticle;
 import net.customware.gwt.dispatch.client.DispatchAsync;
