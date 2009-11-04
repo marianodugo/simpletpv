@@ -6,12 +6,10 @@ package simpletpv.server.handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
-
 import com.google.inject.Inject;
 
-import simpletpv.server.PMF;
+import simpletpv.server.ArticleDAO;
+import simpletpv.server.ArticleJdoDAO;
 import simpletpv.shared.entity.Article;
 import simpletpv.shared.rpc.FetchArticles;
 import simpletpv.shared.rpc.FetchArticlesResult;
@@ -25,31 +23,22 @@ import net.customware.gwt.dispatch.shared.ActionException;
  */
 public class FetchArticlesHandler implements 
 		ActionHandler<FetchArticles, FetchArticlesResult> {
+	private ArticleDAO articleDAO = new ArticleJdoDAO();
 	
 	@Inject
 	public FetchArticlesHandler() {
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public FetchArticlesResult execute(final FetchArticles action, 
 			final ExecutionContext context) throws ActionException {
 
 		try {
-			List<Article> results;
-			PersistenceManager pm = PMF.get().getPersistenceManager();
-			Query query = pm.newQuery(Article.class);
-			query.setOrdering("id desc");
-
-			try {
-				results = (List<Article>) query.execute();
-			} finally {
-				query.closeAll();
-			}
-			
+			List<Article> results = articleDAO.selectAll();
+			articleDAO.count();
 			List<Article> copy = new ArrayList<Article>();
 			copy.addAll(results);
-			
+
 			return new FetchArticlesResult(copy);
 		} catch(Exception e) {
 			throw new ActionException(e);
