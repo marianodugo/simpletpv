@@ -23,8 +23,7 @@ public class Article extends AbstractArticle implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@PrimaryKey
-	//@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long id;
 	
 	@Persistent
@@ -64,5 +63,16 @@ public class Article extends AbstractArticle implements Serializable {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("[Article");
+		sb.append("[id: " + this.id + "]");
+		sb.append("[description: " + this.description + "]");
+		sb.append("]");
+		
+		return sb.toString();
 	}
 }
