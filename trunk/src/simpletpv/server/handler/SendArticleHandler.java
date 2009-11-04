@@ -3,14 +3,12 @@
  */
 package simpletpv.server.handler;
 
-import java.util.List;
-
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
+import java.util.Date;
 
 import com.google.inject.Inject;
 
-import simpletpv.server.PMF;
+import simpletpv.server.ArticleDAO;
+import simpletpv.server.ArticleJdoDAO;
 import simpletpv.shared.entity.Article;
 import simpletpv.shared.rpc.GenericResult;
 import simpletpv.shared.rpc.SendArticle;
@@ -24,19 +22,23 @@ import net.customware.gwt.dispatch.shared.ActionException;
  */
 public class SendArticleHandler implements 
 		ActionHandler<SendArticle, GenericResult> {
+	//private ArticleDAO articleDAO = new ArticleDAOMock();
+	private ArticleDAO articleDAO = new ArticleJdoDAO();
 	
 	@Inject
 	public SendArticleHandler() {
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public GenericResult execute(final SendArticle action, 
 			final ExecutionContext context) throws ActionException {
-		
+
 		try {
+			Article article = new Article(action.getArticle());
+			article.setDate(new Date());
+			articleDAO.insert(article);
 			
-			PersistenceManager pm = PMF.get().getPersistenceManager();
+			/*PersistenceManager pm = PMF.get().getPersistenceManager();
 			Article a = new Article(action.getArticle());
 			Query query = pm.newQuery(Article.class);
 			query.setOrdering("id asc");
@@ -50,7 +52,7 @@ public class SendArticleHandler implements
 				pm.makePersistent(a);
 			} finally {
 				pm.close();
-			}
+			}*/
 			
 			return new GenericResult(action.getArticle(), true);
 		} catch(Exception cause) {
