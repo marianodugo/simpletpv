@@ -57,14 +57,14 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 
 	@Override
 	protected void onBind() {
+		doFetchAllArticles();
+		
 		registerHandler(eventBus.addHandler(SendArticleEvent.TYPE,
 				new SendArticleEventHandler() {
 
 					@Override
 					public void onSendArticle(SendArticleEvent event) {
 						display.setWestLabel("new value entered");
-						//display.setListArticles("pepe");
-						
 						doFetchAllArticles();
 					}
 			
@@ -96,14 +96,13 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 					@Override
 					protected void handleSuccess(FetchArticlesResult value) {
 						List<Article> results = value.getArticles();
-						String strdata = new String();
+						StringBuilder sb = new StringBuilder();
 
 						for (Article item : results) {
-							strdata += item.getId()
-								+ item.getDescription() + "<br>";
+							sb.append(item.toString() + "<br>");
 						}
 						
-						display.setListArticles(strdata);
+						display.setListArticles(sb.toString());
 					}
 					
 				});
