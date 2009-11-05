@@ -3,7 +3,6 @@
  */
 package simpletpv.server.handler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.inject.Inject;
@@ -35,11 +34,8 @@ public class FetchArticlesHandler implements
 
 		try {
 			List<Article> results = articleDAO.selectAll();
-			articleDAO.count();
-			List<Article> copy = new ArrayList<Article>();
-			copy.addAll(results);
 
-			return new FetchArticlesResult(copy);
+			return new FetchArticlesResult(results);
 		} catch(Exception e) {
 			throw new ActionException(e);
 		}
