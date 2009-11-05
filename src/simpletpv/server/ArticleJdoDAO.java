@@ -8,6 +8,8 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import com.google.inject.internal.Lists;
+
 import net.customware.gwt.dispatch.shared.ActionException;
 import simpletpv.shared.entity.Article;
 
@@ -15,9 +17,16 @@ import simpletpv.shared.entity.Article;
  * @author mcosta
  * 
  * SOURCE: http://www.ibm.com/developerworks/java/library/j-gaej3.html
+ * SOURCE: http://stronglytypedblog.blogspot.com/2009/07/wicket-spring-jdo-on-google-app-engine.html
  *
  */
 public class ArticleJdoDAO implements ArticleDAO {
+	/*public Article get(final Long id) {
+		final Person person = getPersistenceManager()
+			.getObjectById(Person.class, id);
+		return getPersistenceManager().detachCopy(person);
+	}*/
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void insert(Article article) throws ActionException {
@@ -58,10 +67,20 @@ public class ArticleJdoDAO implements ArticleDAO {
 	@Override
 	public List<Article> selectAll() {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		String query = "select from " + Article.class.getName() 
-			+ " order by date desc";
+		List<Article> list;
+		
+		try {
+			Query query = pm.newQuery(Article.class);
+			query.setOrdering("date desc");
+			//query.setRange(first, first + count);
 
-		return (List<Article>) pm.newQuery(query).execute();
+			list = (List<Article>) query.execute();
+			list = Lists.newArrayList(pm.detachCopyAll(list));
+		} finally {
+			pm.close();
+		}
+		
+		return list; 
 	}
 
 	@Override
@@ -104,18 +123,18 @@ public class ArticleJdoDAO implements ArticleDAO {
 	@Override
 	public int count() {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query query = pm.newQuery(Article.class);
-		int count = 0;
+		final Query query = pm.newQuery(Article.class);
+		Integer res;
 
 		query.setResult("count(this)");
 		
 		try {
-			count = (Integer) query.execute();
+			res = (Integer) query.execute();
 		} finally {
 			pm.close();
 		}
 		
-		return count;
+		return res;
 	}
 
 	@Override
