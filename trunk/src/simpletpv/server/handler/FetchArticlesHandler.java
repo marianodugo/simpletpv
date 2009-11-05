@@ -51,8 +51,8 @@ public class FetchArticlesHandler implements
 	}
 
 	@Override
-	public void rollback(FetchArticles arg0, FetchArticlesResult arg1,
-			ExecutionContext arg2) throws ActionException {
+	public void rollback(FetchArticles action, FetchArticlesResult result,
+			ExecutionContext context) throws ActionException {
 		// TODO Auto-generated method stub
 	}
 }
