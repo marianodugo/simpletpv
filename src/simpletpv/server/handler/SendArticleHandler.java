@@ -22,7 +22,7 @@ import net.customware.gwt.dispatch.shared.ActionException;
  */
 public class SendArticleHandler implements 
 		ActionHandler<SendArticle, GenericResult> {
-	//private ArticleDAO articleDAO = new ArticleDAOMock();
+	// private ArticleDAO articleDAO = new ArticleMockDAO();
 	private ArticleDAO articleDAO = new ArticleJdoDAO();
 	
 	@Inject
@@ -38,22 +38,6 @@ public class SendArticleHandler implements
 			article.setDate(new Date());
 			articleDAO.insert(article);
 			
-			/*PersistenceManager pm = PMF.get().getPersistenceManager();
-			Article a = new Article(action.getArticle());
-			Query query = pm.newQuery(Article.class);
-			query.setOrdering("id asc");
-
-			try {
-				List<Article> results = (List<Article>) query.execute();
-				if(results.size() >= 10) {
-					pm.deletePersistent(results.get(0));
-				}
-				
-				pm.makePersistent(a);
-			} finally {
-				pm.close();
-			}*/
-			
 			return new GenericResult(action.getArticle(), true);
 		} catch(Exception cause) {
 			throw new ActionException(cause);
@@ -66,8 +50,8 @@ public class SendArticleHandler implements
 	}
 
 	@Override
-	public void rollback(SendArticle arg0, GenericResult arg1,
-			ExecutionContext arg2) throws ActionException {
+	public void rollback(SendArticle action, GenericResult result,
+			ExecutionContext context) throws ActionException {
 		// TODO Auto-generated method stub
 		
 	}
