@@ -53,4 +53,10 @@ public class ArticleMockDAO implements ArticleDAO {
 		
 	}
 
+	@Override
+	public Article selectOne(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

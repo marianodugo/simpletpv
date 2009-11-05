@@ -58,22 +58,10 @@ public class ArticleJdoDAO implements ArticleDAO {
 	@Override
 	public List<Article> selectAll() {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		//List<Article> articles;
-
 		String query = "select from " + Article.class.getName() 
 			+ " order by date desc";
+
 		return (List<Article>) pm.newQuery(query).execute();
-
-		/*Query query = pm.newQuery(Article.class);
-		query.setOrdering("date desc");
-
-		try {
-			articles = (List<Article>) query.execute();
-		} finally {
-			pm.close();
-		}
-		
-		return articles;*/
 	}
 
 	@Override
@@ -128,6 +116,18 @@ public class ArticleJdoDAO implements ArticleDAO {
 		}
 		
 		return count;
+	}
+
+	@Override
+	public Article selectOne(Long id) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		String query = "select UNIQUE from " + Article.class.getName()
+			+ " where id == :articleId";
+		Query q = pm.newQuery(query);
+		
+		Article article = (Article) q.execute(id);
+
+		return article;
 	}
 
 }
