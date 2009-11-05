@@ -19,6 +19,6 @@ public interface ArticleDAO {
 	void update(Article article) throws ActionException;
 	
 	int count();
-	//Article select(int id);
+	Article selectOne(Long id);
 	List<Article> selectAll();
 }
