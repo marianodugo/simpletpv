@@ -3,7 +3,7 @@
  */
 package simpletpv.client.mvp;
 
-import simpletpv.client.localization.AppLocale;
+import simpletpv.client.i18n.AppLocale;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.Button;

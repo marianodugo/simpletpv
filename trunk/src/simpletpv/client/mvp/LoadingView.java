@@ -3,7 +3,7 @@
  */
 package simpletpv.client.mvp;
 
-import simpletpv.client.localization.AppLocale;
+import simpletpv.client.i18n.AppLocale;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.FlowPanel;

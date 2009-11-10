@@ -5,7 +5,7 @@ package simpletpv.client.mvp;
 
 import java.util.List;
 
-import simpletpv.client.localization.AppLocale;
+import simpletpv.client.i18n.AppLocale;
 import simpletpv.shared.entity.Article;
 import simpletpv.shared.event.LoadingEvent;
 import simpletpv.shared.event.SendArticleEvent;
