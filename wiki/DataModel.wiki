@@ -2,7 +2,7 @@
 
 = DataModel =
 
-||ARTICULO||||||||
+|| *ARTICULO||||||||
 ||ART_ID||LONG||PK, FK ARTICULO_PAD, TICKET_LINEAS||Identificador del artículo||
 ||ART_DESCRIPCION||VARCHAR(256)||*||Descripcion del articulo||
 ||ART_ETIQUETA||VARCHAR(256)||*||El texto que se va a mostrar en el formulario.||
@@ -12,7 +12,7 @@
 ||ART_FACT||VARCHAR(64)||*||*||
 ||ART_MOVIMIENTO||DATETIME||*||Fecha de un movimiento del articulo||
 
-||ARTICULO_PAD||||||||
+|| *ARTICULO_PAD||||||||
 ||ART_ID||LONG||PK, FK ARTICULO||Identificador del artículo||
 ||ART_DESCRIPCION||VARCHAR(256)||*||Descripcion del articulo||
 ||ART_ETIQUETA||VARCHAR(256)||*||El texto que se va a mostrar en el formulario.||
@@ -22,34 +22,34 @@
 ||ART_FACT||VARCHAR(64)||*||*||
 ||ART_MOVIMIENTO||DATETIME||PK||Fecha de un movimiento del articulo||
 
-||CAJERA||||||||
+|| *CAJERA||||||||
 ||CAJ_ID||LONG||PK, FK TICKET||Identificador de cajera||
 ||CAJ_NOMBRE||VARCHAR(256)||*||Nombre de cajera||
 ||CAJ_AUT||VARCHAR(64)||*||*||
 
-||EMPRESA||||||||
+|| *EMPRESA||||||||
 ||EMP_ID||LONG||PK, FK TICKET||Identificador de empresa||
 ||EMP_NOMBRE||VARCHAR(64)||*||Identificador de empresa||
 ||EMP_DESCRIPCION||VARCHAR(256)||*||Descripcion de la empresa||
 
-||PAGO||||||||
+|| *PAGO||||||||
 ||PAG_ID||LONG||PK, FK TICKET||Identificador de pago||
 ||PAG_DESCRIPCION||VARCHAR(256)||*||Descripcion del pago||
 ||PAG_FAC_SER||VARCHAR(1)||*||N/P/C||
 ||PAG_DESC_TIC||VARCHAR(64)||*||Texto que aparecerá en el ticket||
 
-||PARAMETROS||||||||
+|| *PARAMETROS||||||||
 ||PAR_NOMBRE||VARCHAR(32)||PK||Nombre del parámetro||
 ||PAR_VALOR||VARCHAR(32)||*||Valor del parámetro||
 ||PAR_DESCRIPCION||VARCHAR(64)||*||Descripción del parámetro||
 
-||PREFERENCIAS||||||||
+|| *PREFERENCIAS||||||||
 ||PRE_USUARIO||VARCHAR(64)||PK, FK USUARIOS||Usuario que se le aplica las preferencias||
 ||PRE_NOMBRE||VARCHAR(64)||PK||Nombre de la preferencia||
 ||PRE_VALOR||VARCHAR(64)||*||Valor de la preferencia||
 ||PRE_DESCRIPCION||VARCHAR(256)||*||Descripcion de la preferencia||
 
-||TICKET||||||||
+|| *TICKET||||||||
 ||TIC_ID||LONG||PK AUTOINCREMENT, FK TICKET_LINEAS||Identificador unico del ticket.||
 ||TIC_EMPRESA||VARCHAR(2)||FK EMPRESA||Numero de empresa (las dos primeras cifras de la tarjeta)||
 ||TIC_EMPLEADO||VARCHAR(5)||*||Numero de empleado (las ultimas cifras de la tarjeta)||
@@ -62,14 +62,14 @@
 ||TIC_SERVICIO||LONG||*||Tipo de servicio (almuerzo, comida, etc...)||
 ||TIC_USUARIO||VARCHAR(64)||FK USUARIOS||Usuario que entra en el sistema||
 
-||TICKET_LINEAS||||||||
+|| *TICKET_LINEAS||||||||
 ||LTI_TICKET||LONG||PK, FK TICKET||Número del ticket||
 ||LTI_LINEA||INT||PK||Número de línea del articulo||
 ||LTI_ARTICULO||LONG||FK ARTICULO||Articulo||
 ||LTI_CANTIDAD||INT||*||Cantidad de articulos||
 ||LTI_IMPORTE||INT||*||Importe a pagar||
 
-||USUARIOS||||||||
+|| *USUARIOS||||||||
 ||USR_USUARIO||VARCHAR(64)||PK, FK TICKET, PREFERENCIAS, USUARIOS_HIST||Login del usuario||
 ||USR_PASSWORD||VARCHAR(64)||*||Password del usuario||
 ||USR_DESCRIPCION||VARCHAR(128)||*||Descripcion del usuario||
@@ -77,14 +77,12 @@
 ||USR_LAST_LOGIN||DATETIME||*||Ultima entrada en el sistema||
 ||USR_GRUPO||VARCHAR(64)||*||Grupo al que pertenece el usuario||
 
-||USUARIOS_HIST||||||||
+|| *USUARIOS_HIST||||||||
 ||UHT_USUARIO||VARCHAR(64)||PK, FK USUARIOS||Nombre del usuario||
 ||UHT_TIPO||VARCHAR(32)||*||Evento del historial||
 ||UHT_DESCRIPCION||VARCHAR(128)||*||Descripcion del evento del historial||
 ||UHT_MOVIMIENTO||DATETIME||PK||Fecha del historial||
 ||UHT_LAST_LOGIN||DATETIME||*||Ultima entrada en el sistema||
-
-
 
 
 
