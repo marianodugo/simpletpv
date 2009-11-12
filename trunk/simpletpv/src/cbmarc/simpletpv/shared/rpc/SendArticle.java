@@ -4,6 +4,7 @@
 package cbmarc.simpletpv.shared.rpc;
 
 import cbmarc.framework.shared.rpc.GenericResult;
+import cbmarc.simpletpv.shared.entity.Article;
 import net.customware.gwt.dispatch.shared.Action;
 
 /**
@@ -15,18 +16,18 @@ public class SendArticle implements Action<GenericResult> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String name;
+	private Article article;
 	
 	@SuppressWarnings("unused")
 	private SendArticle() {
 	}
 	
-	public SendArticle(final String name) {
-		this.name = name;
+	public SendArticle(Article article) {
+		this.article = article;
 	}
 	
-	public String getArticle() {
-		return name;
+	public Article getArticle() {
+		return article;
 	}
 
 }

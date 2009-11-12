@@ -5,16 +5,12 @@ package cbmarc.simpletpv.client.mvp;
 
 
 import cbmarc.framework.client.mvp.AbstractView;
-import cbmarc.simpletpv.client.i18n.AppLocale;
 
-import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -24,19 +20,19 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class MainView extends AbstractView implements MainPresenter.Display  {
 	private final DockPanel outer;
+	private VerticalPanel east;
+	private Panel north;
+
 	private HTML listArticles;
 	private Label westLabel;
-	private TextBox nameTextBox;
-	private Button submitButton;
 
 	public MainView() {
-		VerticalPanel eastPanel = new VerticalPanel();
+		east = new VerticalPanel();
 		VerticalPanel westPanel = new VerticalPanel();
 
 		outer = new DockPanel();
 		initWidget(outer);
 
-		outer.setBorderWidth(1);
 		outer.setStyleName("main");
 
 		westLabel = new Label("no name");
@@ -44,37 +40,14 @@ public class MainView extends AbstractView implements MainPresenter.Display  {
 		westPanel.add(new HTML("Main West"));
 		westPanel.add(listArticles);
 		westPanel.add(westLabel);
+		
+		north = new HorizontalPanel();
+		north.add(new HTML("SIMPLETPV"));
+		north.addStyleName("northPanel");
 
-		eastPanel.add(new HTML(AppLocale.constants().simple_rpc()));
-		eastPanel.add(createForm());
-
+		outer.add(north, DockPanel.NORTH);
 		outer.add(westPanel, DockPanel.WEST);
-		outer.add(eastPanel, DockPanel.EAST);
-	}
-	
-	private Widget createForm() {
-		HorizontalPanel layout = new HorizontalPanel();
-		
-		layout.setSpacing(5);
-
-		nameTextBox = new TextBox();
-        submitButton = new Button(AppLocale.constants().submit());
-        
-		layout.add(new HTML(AppLocale.constants().name() + " :"));
-		layout.add(nameTextBox);
-		layout.add(submitButton);
-		
-		return layout;
-	}
-
-	@Override
-	public HasValue<String> getNameTextBox() {
-		return nameTextBox;
-	}
-
-	@Override
-	public HasClickHandlers getSubmitButton() {
-		return submitButton;
+		outer.add(east, DockPanel.EAST);
 	}
 
 	@Override
@@ -85,5 +58,11 @@ public class MainView extends AbstractView implements MainPresenter.Display  {
 	@Override
 	public void setListArticles(String listArticles) {
 		this.listArticles.setHTML(listArticles);
+	}
+
+	@Override
+	public void setEast(Widget widget) {
+		east.clear();
+		east.add(widget);
 	}
 }

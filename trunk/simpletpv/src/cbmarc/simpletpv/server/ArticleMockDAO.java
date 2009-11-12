@@ -18,9 +18,9 @@ public class ArticleMockDAO implements ArticleDAO {
 	Map<String, Article> map = new LinkedHashMap<String, Article>();
 	
 	{
-		map.put("a", new Article("a"));
-		map.put("b", new Article("b"));
-		map.put("c", new Article("c"));
+		//map.put("a", new Article());
+		//map.put("b", new Article());
+		//map.put("c", new Article());
 	}
 
 	@Override
