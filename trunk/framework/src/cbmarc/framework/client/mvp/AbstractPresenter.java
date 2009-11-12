@@ -18,14 +18,15 @@ public abstract class AbstractPresenter<D extends AbstractPresenter.Display>
 	public interface Display extends WidgetDisplay {
 	}
 	
+	public static final Place PLACE = new Place("");
+	
 	public AbstractPresenter(final D display, final EventBus eventBus) {
 		super(display, eventBus);
 	}
 
 	@Override
 	public Place getPlace() {
-		// TODO Auto-generated method stub
-		return null;
+		return PLACE;
 	}
 
 	@Override
