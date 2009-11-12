@@ -28,7 +28,13 @@ public class Article extends AbstractArticle implements Serializable {
 	private Long id;
 	
 	@Persistent
+	private String label;
+	
+	@Persistent
 	private String description;
+	
+	@Persistent
+	private Float price;
 	
 	@Persistent
 	private Date date;
@@ -40,9 +46,11 @@ public class Article extends AbstractArticle implements Serializable {
 	/**
 	 * @param description
 	 */
-	public Article(String description) {
+	public Article(String label, String description, Float price) {
 		super();
+		this.label = label;
 		this.description = description;
+		this.price = price;
 	}
 
 	/**
@@ -50,6 +58,27 @@ public class Article extends AbstractArticle implements Serializable {
 	 */
 	public Long getId() {
 		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the label
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * @param label the label to set
+	 */
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	/**
@@ -65,7 +94,21 @@ public class Article extends AbstractArticle implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	/**
+	 * @return the price
+	 */
+	public Float getPrice() {
+		return price;
+	}
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+
 	/**
 	 * @return the date
 	 */
@@ -85,7 +128,9 @@ public class Article extends AbstractArticle implements Serializable {
 		
 		sb.append("[Article");
 		sb.append("[id: " + this.id + "]");
+		sb.append("[label: " + this.label + "]");
 		sb.append("[description: " + this.description + "]");
+		sb.append("[price: " + this.price + "]");
 		sb.append("[date: " + this.date + "]");
 		sb.append("]");
 		

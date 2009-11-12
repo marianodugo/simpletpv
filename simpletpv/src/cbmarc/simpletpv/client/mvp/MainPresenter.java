@@ -9,23 +9,19 @@ import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.DisplayCallback;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.place.Place;
-
 import cbmarc.framework.client.mvp.AbstractPresenter;
-import cbmarc.framework.shared.event.LoadingEvent;
-import cbmarc.framework.shared.rpc.GenericResult;
-import cbmarc.simpletpv.client.i18n.AppLocale;
+import cbmarc.simpletpv.client.mvp.article.ArticleFormPresenter;
+import cbmarc.simpletpv.client.mvp.article.ArticleListPresenter;
 import cbmarc.simpletpv.shared.entity.Article;
 import cbmarc.simpletpv.shared.event.SendArticleEvent;
 import cbmarc.simpletpv.shared.event.SendArticleEventHandler;
 import cbmarc.simpletpv.shared.rpc.FetchArticles;
 import cbmarc.simpletpv.shared.rpc.FetchArticlesResult;
-import cbmarc.simpletpv.shared.rpc.SendArticle;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
 /**
@@ -36,25 +32,33 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 	public interface Display extends AbstractPresenter.Display {
 		public void setListArticles(String listArticles);
 		public void setWestLabel(String westLabel);
-		public HasValue<String> getNameTextBox();
-		public HasClickHandlers getSubmitButton();
+		public void setEast(Widget widget);
 	}
 
 	public static final Place PLACE = new Place("Main");
 	
 	private final DispatchAsync dispatcher;
+	private final ArticleFormPresenter articleFormPresenter;
+	private final ArticleListPresenter articleListPresenter;
 
 	@Inject
 	public MainPresenter(final Display display, final EventBus eventBus
-			, final DispatchAsync dispatcher) {
+			, final DispatchAsync dispatcher
+			, final ArticleFormPresenter articleFormPresenter
+			, final ArticleListPresenter articleListPresenter) {
 		super(display, eventBus);
+		
 		this.dispatcher = dispatcher;
+		this.articleFormPresenter = articleFormPresenter;
+		this.articleListPresenter = articleListPresenter;
+		
+		final Panel article = new VerticalPanel();
+		article.add(this.articleListPresenter.getDisplay().asWidget());
+		article.add(this.articleFormPresenter.getDisplay().asWidget());
+		
+		display.setEast(article);
+		
 		bind();
-	}
-
-	@Override
-	public Place getPlace() {
-		return PLACE;
 	}
 
 	@Override
@@ -71,18 +75,6 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 					}
 			
 		}));
-		
-		display.getSubmitButton().addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				if(display.getNameTextBox().getValue().length() > 25)
-					Window.alert(AppLocale.constants().err_toolong());
-				else
-					doSend();
-			}
-			
-		});
 	}
 	
 	private void doFetchAllArticles() {
@@ -110,7 +102,7 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 				});
 	}
 	
-	private void doSend() {
+	/*private void doSend() {
 		eventBus.fireEvent(new LoadingEvent(false));
 		dispatcher.execute(
 				new SendArticle(display.getNameTextBox().getValue()),
@@ -129,5 +121,5 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 					}
 					
 				});
-	}
+	}*/
 }

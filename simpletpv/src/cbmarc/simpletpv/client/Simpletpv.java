@@ -16,6 +16,8 @@ public class Simpletpv implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 		final AppPresenter appPresenter = injector.getAppPresenter();
+		
+		RootPanel.get().setStyleName("body");
 
 		appPresenter.go(RootPanel.get());
 		injector.getPlaceManager().fireCurrentPlace();

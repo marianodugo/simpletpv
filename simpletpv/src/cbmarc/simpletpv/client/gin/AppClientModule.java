@@ -1,6 +1,5 @@
 package cbmarc.simpletpv.client.gin;
 
-
 import cbmarc.framework.client.mvp.LoadingPresenter;
 import cbmarc.framework.client.mvp.LoadingView;
 import cbmarc.simpletpv.client.mvp.AppPresenter;
@@ -10,6 +9,10 @@ import cbmarc.simpletpv.client.mvp.MainPresenter;
 import cbmarc.simpletpv.client.mvp.MainView;
 import cbmarc.simpletpv.client.mvp.TopPresenter;
 import cbmarc.simpletpv.client.mvp.TopView;
+import cbmarc.simpletpv.client.mvp.article.ArticleFormPresenter;
+import cbmarc.simpletpv.client.mvp.article.ArticleFormView;
+import cbmarc.simpletpv.client.mvp.article.ArticleListPresenter;
+import cbmarc.simpletpv.client.mvp.article.ArticleListView;
 
 import com.google.inject.Singleton;
 
@@ -32,6 +35,9 @@ public class AppClientModule extends AbstractPresenterModule {
 		bindPresenter(TopPresenter.class, TopPresenter.Display.class, TopView.class);
 		bindPresenter(MainPresenter.class, MainPresenter.Display.class, MainView.class);
 		bindPresenter(BottomPresenter.class, BottomPresenter.Display.class, BottomView.class);
+		
+		bindPresenter(ArticleFormPresenter.class, ArticleFormPresenter.Display.class, ArticleFormView.class);
+		bindPresenter(ArticleListPresenter.class, ArticleListPresenter.Display.class, ArticleListView.class);
 		
 		bind(AppPresenter.class).in(Singleton.class);
 	}

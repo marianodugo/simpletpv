@@ -5,7 +5,6 @@ package cbmarc.simpletpv.client.mvp;
 
 import cbmarc.framework.client.mvp.AbstractView;
 
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
 /**
@@ -20,9 +19,6 @@ public class BottomView extends AbstractView
 		outer = new HorizontalPanel();
 		initWidget(outer);
 
-		outer.setBorderWidth(1);
 		outer.setStyleName("bottom");
-		outer.setHorizontalAlignment(HorizontalPanel.ALIGN_CENTER);
-		outer.add(new HTML("Bottom"));
 	}
 }

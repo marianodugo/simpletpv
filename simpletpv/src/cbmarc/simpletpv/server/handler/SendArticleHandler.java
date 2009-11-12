@@ -35,11 +35,11 @@ public class SendArticleHandler implements
 			final ExecutionContext context) throws ActionException {
 
 		try {
-			Article article = new Article(action.getArticle());
+			Article article = action.getArticle();
 			article.setDate(new Date());
 			articleDAO.insert(article);
 			
-			return new GenericResult(action.getArticle(), true);
+			return new GenericResult("ok", true);
 		} catch(Exception cause) {
 			throw new ActionException(cause);
 		}
