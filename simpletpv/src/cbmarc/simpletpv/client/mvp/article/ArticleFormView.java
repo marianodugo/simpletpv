@@ -8,6 +8,8 @@ import cbmarc.simpletpv.client.i18n.AppLocale;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Focusable;
@@ -37,6 +39,8 @@ public class ArticleFormView extends AbstractView
 	
 	public ArticleFormView() {
 		constants = GWT.create(ArticleConstants.class);
+		
+		sinkEvents(Event.ONKEYPRESS);
 		
 		initWidget(createForm());
 	}
@@ -77,6 +81,17 @@ public class ArticleFormView extends AbstractView
 
 		panel.setHTML(numRows, 0, header);
 		panel.setWidget(numRows, 1, value);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Composite#onBrowserEvent(com.google.gwt.user.client.Event)
+	 */
+	@Override
+	public void onBrowserEvent(Event event) {
+		if(event.getKeyCode() == KeyCodes.KEY_ENTER)
+			submitButton.click();
+		
+		super.onBrowserEvent(event);
 	}
 
 	@Override
