@@ -3,8 +3,8 @@
  */
 package cbmarc.simpletpv.client.mvp;
 
-
 import cbmarc.framework.client.mvp.AbstractView;
+import cbmarc.simpletpv.client.i18n.AppLocale;
 
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
@@ -42,7 +42,7 @@ public class MainView extends AbstractView implements MainPresenter.Display  {
 		westPanel.add(westLabel);
 		
 		north = new HorizontalPanel();
-		north.add(new HTML("SIMPLETPV"));
+		north.add(new HTML(AppLocale.constants().app_title()));
 		north.addStyleName("northPanel");
 
 		outer.add(north, DockPanel.NORTH);

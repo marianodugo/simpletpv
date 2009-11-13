@@ -3,12 +3,15 @@
  */
 package cbmarc.simpletpv.client.mvp.article;
 
+import java.util.List;
+
 import com.google.inject.Inject;
 
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.place.Place;
 import cbmarc.framework.client.mvp.AbstractPresenter;
+import cbmarc.simpletpv.shared.entity.Article;
 
 /**
  * @author MCOSTA
@@ -25,6 +28,9 @@ public class ArticleListPresenter
 	@SuppressWarnings("unused")
 	private final DispatchAsync dispatcher;
 	
+	protected int indexSelected = 0;
+	protected List<Article> articles = null;
+	
 	@Inject
 	public ArticleListPresenter(Display display, EventBus eventBus
 			, final DispatchAsync dispatcher) {
@@ -39,4 +45,6 @@ public class ArticleListPresenter
 	@Override
 	protected void onBind() {
 	}
+	
+	
 }
