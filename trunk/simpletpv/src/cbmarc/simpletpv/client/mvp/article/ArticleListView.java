@@ -4,7 +4,6 @@
 package cbmarc.simpletpv.client.mvp.article;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CaptionPanel;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -33,10 +32,10 @@ public class ArticleListView extends AbstractView
 		final Panel content = new VerticalPanel();
 		
 		articleList.getRowFormatter().setStyleName(0, "header");
-		articleList.setText(0, 0, constants.listId());
-		articleList.setText(0, 1, constants.listLabel());
-		articleList.setText(0, 2, constants.listPrice());
-		articleList.setText(0, 3, constants.listDate());
+		articleList.setHTML(0, 0, constants.listId());
+		articleList.setHTML(0, 1, constants.listLabel());
+		articleList.setHTML(0, 2, constants.listPrice());
+		articleList.setHTML(0, 3, constants.listDate());
 		
 		content.add(articleList);
 		

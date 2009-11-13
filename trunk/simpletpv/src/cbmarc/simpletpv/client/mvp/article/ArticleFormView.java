@@ -63,7 +63,8 @@ public class ArticleFormView extends AbstractView
 		
 		outer.add(panel);
 		
-		final Panel buttonsPanel = new HorizontalPanel();
+		final HorizontalPanel buttonsPanel = new HorizontalPanel();
+		buttonsPanel.setSpacing(5);
 		
 		submitButton = new Button(AppLocale.constants().submit());
 		buttonsPanel.add(submitButton);

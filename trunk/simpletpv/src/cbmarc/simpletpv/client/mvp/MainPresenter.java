@@ -9,6 +9,7 @@ import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.DisplayCallback;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.place.Place;
+import net.customware.gwt.presenter.client.place.PlaceRequest;
 import cbmarc.framework.client.mvp.AbstractPresenter;
 import cbmarc.simpletpv.client.mvp.article.ArticleFormPresenter;
 import cbmarc.simpletpv.client.mvp.article.ArticleListPresenter;
@@ -53,8 +54,8 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 		this.articleListPresenter = articleListPresenter;
 		
 		final Panel article = new VerticalPanel();
-		article.add(this.articleListPresenter.getDisplay().asWidget());
 		article.add(this.articleFormPresenter.getDisplay().asWidget());
+		article.add(this.articleListPresenter.getDisplay().asWidget());
 		
 		display.setEast(article);
 		
@@ -101,25 +102,19 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 					
 				});
 	}
-	
-	/*private void doSend() {
-		eventBus.fireEvent(new LoadingEvent(false));
-		dispatcher.execute(
-				new SendArticle(display.getNameTextBox().getValue()),
-				new DisplayCallback<GenericResult>(display) {
 
-					@Override
-					protected void handleFailure(Throwable e) {
-						eventBus.fireEvent(new LoadingEvent(true));
-						Window.alert("FAILURE: " + e.getCause());
-					}
-
-					@Override
-					protected void handleSuccess(GenericResult value) {
-						eventBus.fireEvent(new LoadingEvent(true));
-						eventBus.fireEvent(new SendArticleEvent());
-					}
-					
-				});
-	}*/
+	/* (non-Javadoc)
+	 * @see cbmarc.framework.client.mvp.AbstractPresenter#onPlaceRequest(net.customware.gwt.presenter.client.place.PlaceRequest)
+	 */
+	@Override
+	protected void onPlaceRequest(PlaceRequest request) {
+		// Grab the 'name' from the request and put it into the 'name' field.
+		// This allows a tag of '#Greeting;name=Foo' to populate the name
+		// field.
+		//final String name = request.getParameter("name", null);
+		 
+		//if (name != null) {
+		//display.getName().setValue(name);
+		//}
+	}
 }

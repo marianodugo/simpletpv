@@ -10,6 +10,10 @@ import com.google.gwt.i18n.client.Constants;
  *
  */
 public interface AppConstants extends Constants {
+	String app_title(); // application title
+	String app_version();
+	String app_copyright();
+
 	String loading();
 	String name();
 	String submit();
