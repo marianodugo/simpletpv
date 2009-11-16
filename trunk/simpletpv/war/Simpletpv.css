@@ -1,17 +1,42 @@
 /** Add css rules here for your application. */
-.top {
-  width: 100%;
-  margin: 5px 0;
+.body {
+  font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  margin: 10px 0;
+  background: #E6EAE9;
 }
 
-.main {
-  margin: 5px 0;
+.top {
   width: 100%;
+}
+
+.mainPanel {
+  margin-left: auto;
+  margin-right: auto;
+  width: 98%;
+  background: #FFFFFF;
+  border: 8px solid #FFF;
+  padding: 5px;
+}
+
+.northPanel {
+  width: 100%;
+  background: #4E7DD1;
+  height: 60px;
+  padding: 15px;
+}
+
+.centerPanel {
+  width: 100%;
+}
+
+.southPanel {
+  width: 100%;
+  background: #4E7DD1;
+  height: 10px;
 }
 
 .bottom {
   width: 100%;
-  margin: 5px 0;
 }
 
 /** Example rules used by the template application (remove for your app) */
