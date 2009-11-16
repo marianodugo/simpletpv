@@ -28,7 +28,9 @@ public class ArticleFormView extends AbstractView
 		implements ArticleFormPresenter.Display {
 
 	final private ArticleConstants constants;
-	private FlexTable panel;
+	
+	final private HorizontalPanel outer = new HorizontalPanel();
+	private FlexTable flexTable = new FlexTable();
 
 	private TextBox labelTextBox;
 	private TextBox descriptionTextBox;
@@ -42,14 +44,18 @@ public class ArticleFormView extends AbstractView
 		
 		sinkEvents(Event.ONKEYPRESS);
 		
-		initWidget(createForm());
+		initWidget(outer);
+		
+		outer.setWidth("100%");
+		outer.setBorderWidth(1);
+		outer.add(createForm());
 	}
 	
 	private Widget createForm() {
-		final Panel outer = new VerticalPanel();
+		final Panel verticalPanel = new VerticalPanel();
 		
-		panel = new FlexTable();
-		panel.setCellSpacing(6);
+		flexTable = new FlexTable();
+		flexTable.setCellSpacing(6);
 		
 		labelTextBox = new TextBox();
 		createFormLine(constants.formLabel(), labelTextBox);
@@ -61,7 +67,7 @@ public class ArticleFormView extends AbstractView
 		priceTextBox = new TextBox();
 		createFormLine(constants.formPrice(), priceTextBox);
 		
-		outer.add(panel);
+		verticalPanel.add(flexTable);
 		
 		final HorizontalPanel buttonsPanel = new HorizontalPanel();
 		buttonsPanel.setSpacing(5);
@@ -72,16 +78,16 @@ public class ArticleFormView extends AbstractView
 		cancelButton = new Button(AppLocale.constants().cancel());
 		buttonsPanel.add(cancelButton);
 		
-		outer.add(buttonsPanel);
+		verticalPanel.add(buttonsPanel);
 		
-		return outer;
+		return verticalPanel;
 	}
 	
 	private void createFormLine(String header, Widget value) {
-		int numRows = panel.getRowCount();
+		int numRows = flexTable.getRowCount();
 
-		panel.setHTML(numRows, 0, header);
-		panel.setWidget(numRows, 1, value);
+		flexTable.setHTML(numRows, 0, header);
+		flexTable.setWidget(numRows, 1, value);
 	}
 
 	/* (non-Javadoc)
