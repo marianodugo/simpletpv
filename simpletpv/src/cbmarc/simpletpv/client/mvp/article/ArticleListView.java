@@ -27,7 +27,6 @@ public class ArticleListView extends AbstractView
 		initWidget(outer);
 		
 		outer.setWidth("100%");
-		outer.setBorderWidth(1);
 		
 		articleListTable.setWidth("100%");
 		articleListTable.getRowFormatter().setStyleName(0, "header");

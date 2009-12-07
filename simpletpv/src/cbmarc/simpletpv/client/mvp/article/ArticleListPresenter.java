@@ -15,6 +15,8 @@ import net.customware.gwt.presenter.client.place.Place;
 import cbmarc.framework.client.mvp.AbstractPresenter;
 import cbmarc.simpletpv.client.ui.SelectableFlexTable;
 import cbmarc.simpletpv.shared.entity.Article;
+import cbmarc.simpletpv.shared.event.SendArticleEvent;
+import cbmarc.simpletpv.shared.event.SendArticleEventHandler;
 import cbmarc.simpletpv.shared.rpc.FetchArticles;
 import cbmarc.simpletpv.shared.rpc.FetchArticlesResult;
 
@@ -41,6 +43,8 @@ public class ArticleListPresenter
 			, final DispatchAsync dispatcher) {
 		super(display, eventBus);
 		this.dispatcher = dispatcher;
+		
+		doFetchAllArticles();
 		bind();
 	}
 
@@ -49,7 +53,14 @@ public class ArticleListPresenter
 	 */
 	@Override
 	protected void onBind() {
-		doFetchAllArticles();
+		registerHandler(eventBus.addHandler(SendArticleEvent.TYPE,
+				new SendArticleEventHandler() {
+
+					@Override
+					public void onSendArticle(SendArticleEvent event) {
+						doFetchAllArticles();
+					}
+		}));
 	}
 	
 	/**

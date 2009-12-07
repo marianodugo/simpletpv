@@ -14,6 +14,8 @@ public interface AppConstants extends Constants {
 	String app_version();
 	String app_copyright();
 
+	String login();
+	
 	String loading();
 	String name();
 	String submit();
