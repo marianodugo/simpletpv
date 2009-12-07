@@ -39,6 +39,9 @@ public class ArticleFormView extends AbstractView
 	private Button submitButton;
 	private Button cancelButton;
 	
+	/**
+	 * 
+	 */
 	public ArticleFormView() {
 		constants = GWT.create(ArticleConstants.class);
 		
@@ -51,6 +54,9 @@ public class ArticleFormView extends AbstractView
 		outer.add(createForm());
 	}
 	
+	/**
+	 * @return
+	 */
 	private Widget createForm() {
 		final Panel verticalPanel = new VerticalPanel();
 		
@@ -83,6 +89,10 @@ public class ArticleFormView extends AbstractView
 		return verticalPanel;
 	}
 	
+	/**
+	 * @param header
+	 * @param value
+	 */
 	private void createFormLine(String header, Widget value) {
 		int numRows = flexTable.getRowCount();
 

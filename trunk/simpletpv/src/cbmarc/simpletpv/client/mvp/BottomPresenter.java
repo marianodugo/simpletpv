@@ -26,9 +26,4 @@ public class BottomPresenter
 		super(display, eventBus);
 		bind();
 	}
-
-	@Override
-	public Place getPlace() {
-		return PLACE;
-	}
 }

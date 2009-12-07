@@ -140,11 +140,8 @@ public class ArticleFormPresenter
 					@Override
 					protected void handleSuccess(GenericResult value) {
 						eventBus.fireEvent(new LoadingEvent(true));
-						
-						doReset();
-						
-						// TODO rename event to refreshArticleListEvent?
 						eventBus.fireEvent(new SendArticleEvent());
+						doReset();
 					}
 					
 				});
