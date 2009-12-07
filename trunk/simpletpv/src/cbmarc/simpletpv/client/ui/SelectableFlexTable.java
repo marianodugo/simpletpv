@@ -4,6 +4,7 @@
 package cbmarc.simpletpv.client.ui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 
 /**

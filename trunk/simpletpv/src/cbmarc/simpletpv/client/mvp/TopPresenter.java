@@ -8,10 +8,10 @@ import net.customware.gwt.presenter.client.place.Place;
 import cbmarc.framework.client.mvp.AbstractPresenter;
 import cbmarc.simpletpv.client.i18n.AppLocale;
 
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Hyperlink;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 
 /**
@@ -20,7 +20,7 @@ import com.google.inject.Inject;
  */
 public class TopPresenter extends AbstractPresenter<TopPresenter.Display> {
 	public interface Display extends AbstractPresenter.Display {
-		public void setTop(Widget widget);
+		public HasClickHandlers getLoginHyperlink();
 	}
 
 	public static final Place PLACE = new Place("Top");
@@ -31,15 +31,27 @@ public class TopPresenter extends AbstractPresenter<TopPresenter.Display> {
 	 */
 	@Inject
 	public TopPresenter(final Display display, final EventBus eventBus) {
-		super(display, eventBus);
-		
-		final HorizontalPanel top = new HorizontalPanel();
-		top.setWidth("100%");
-		top.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
-		top.add(new Hyperlink(AppLocale.constants().login(), "login"));
-		
-		display.setTop(top);
-		
+		super(display, eventBus);		
 		bind();
+	}
+
+	/* (non-Javadoc)
+	 * @see cbmarc.framework.client.mvp.AbstractPresenter#onBind()
+	 */
+	@Override
+	protected void onBind() {
+		display.getLoginHyperlink().addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				doLogin();
+			}
+			
+		});
+	}
+	
+	private void doLogin() {
+		Window.alert("You clicked \"" 
+				+ AppLocale.constants().login() + "\" Hyperlink");
 	}
 }
