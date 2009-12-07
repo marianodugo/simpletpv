@@ -18,6 +18,9 @@
   <inherits name='net.customware.gwt.presenter.Presenter' />
   <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
   <inherits name='cbmarc.framework.Framework' />
+  
+  <!-- French language, independent of country -->
+  <!-- <extend-property name="locale" values="fr"/> -->
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='cbmarc.simpletpv.client.Simpletpv'/>

@@ -5,6 +5,8 @@ package cbmarc.simpletpv.client.mvp.article;
 
 import java.util.List;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 
@@ -61,6 +63,16 @@ public class ArticleListPresenter
 						doFetchAllArticles();
 					}
 		}));
+
+		display.getArticleListTable().addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				SelectableFlexTable sft = display.getArticleListTable();
+				Window.alert(Integer.toString(sft.getRowForEvent(event)));
+			}
+			
+		});
 	}
 	
 	/**
