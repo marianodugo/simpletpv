@@ -27,17 +27,15 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  */
 public class Keyboard extends Composite 
 		implements HasSelectionHandlers<String> {
+	
 	private HorizontalPanel outer;
-	
 	private final List<KeyButton> bList = new ArrayList<KeyButton>();
-	
-	// "\n" => new line
-	// "\t" => insert tab
-	private final String buttons[] = {
-			"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "\n",
-			"\t", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "<-", "\n",
-			"\t", "\t", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "\n",
-			"TAB", "Z", "X", "C", "V", "B", "N", "M", ",", ".", ";", "\n"
+	private final String buttons[][] = {
+			{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-"},
+			{"", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "DEL"},
+			{"", "", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":"},
+			{"TAB", "Z", "X", "C", "V", "B", "N", "M", ",", ".", ";"},
+			{"","","","","","SPACE","","","","","","CLEAR"}
 	};
 	
 	private final int buttonSpacing = 3;
@@ -59,23 +57,18 @@ public class Keyboard extends Composite
 	 * 
 	 */
 	private void createKeyboard() {
-		int i0 = 0, i1 = 0;
 		VerticalPanel vp = new VerticalPanel();
 		vp.setSpacing(buttonSpacing);
 		
-		for(i0 = 0; i1 < buttons.length; ++i0) {
+		for(int i = 0; i < buttons.length; i++) {
 			HorizontalPanel hp = new HorizontalPanel();
 			hp.setSpacing(buttonSpacing);
 
-			for(; i1 < buttons.length; ++i1) {
-				if(buttons[i1].equals("\t")) {
+			for(int j=0; j < buttons[i].length; j++) {
+				if(buttons[i][j].isEmpty()) {
 					hp.add(new HTML("&nbsp;&nbsp;&nbsp;"));
-				} else if(buttons[i1].equals("\n")) {
-					++i1;
-
-					break;
 				} else {
-					KeyButton b = new KeyButton(buttons[i1]);
+					KeyButton b = new KeyButton(buttons[i][j]);
 					bList.add(b);
 
 					hp.add(b);
@@ -100,15 +93,6 @@ public class Keyboard extends Composite
 			SelectionHandler<String> handler) {
 		return addHandler(handler, SelectionEvent.getType());
 	}
-
-	/* (non-Javadoc)
-	 * @see com.google.gwt.event.logical.shared.HasValueChangeHandlers#addValueChangeHandler(com.google.gwt.event.logical.shared.ValueChangeHandler)
-	 */
-	/*@Override
-	public HandlerRegistration addValueChangeHandler(
-			ValueChangeHandler<String> handler) {
-		return addHandler(handler, ValueChangeEvent.getType());
-	}*/
 	
 	/**
 	 * @author MCOSTA
@@ -122,7 +106,10 @@ public class Keyboard extends Composite
 		 */
 		public KeyButton(String text) {
 			setText(text);
-			setSize(buttonWidth, buttonHeight);
+			setHeight(buttonHeight);
+			
+			if(text.length() < 2)
+				setWidth(buttonWidth);
 		}
 
 		/* (non-Javadoc)
