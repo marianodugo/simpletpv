@@ -11,7 +11,11 @@ import cbmarc.framework.client.mvp.AbstractPresenter;
 import cbmarc.simpletpv.client.i18n.AppLocale;
 import cbmarc.simpletpv.client.mvp.article.ArticleFormPresenter;
 import cbmarc.simpletpv.client.mvp.article.ArticleListPresenter;
+import cbmarc.simpletpv.client.ui.Keyboard;
 
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -63,7 +67,19 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display> {
 		
 		// Set the center panel
 		final Panel article = new VerticalPanel();
+		final Keyboard k = new Keyboard();
 		article.setWidth("100%");
+		article.add(k);
+		
+		k.addSelectionHandler(new SelectionHandler<String>() {
+
+			@Override
+			public void onSelection(SelectionEvent<String> event) {
+				Window.alert(event.getSelectedItem());
+			}
+			
+		});
+		
 		article.add(this.articleFormPresenter.getDisplay().asWidget());
 		article.add(this.articleListPresenter.getDisplay().asWidget());
 		display.setCenter(article);
