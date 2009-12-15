@@ -3,9 +3,6 @@
  */
 package cbmarc.simpletpv.client.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.HasSelectionHandlers;
@@ -29,7 +26,6 @@ public class Keyboard extends Composite
 		implements HasSelectionHandlers<String> {
 	
 	private HorizontalPanel outer;
-	private final List<KeyButton> bList = new ArrayList<KeyButton>();
 	private final String buttons[][] = {
 			{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-"},
 			{"", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "DEL"},
@@ -68,10 +64,7 @@ public class Keyboard extends Composite
 				if(buttons[i][j].isEmpty()) {
 					hp.add(new HTML("&nbsp;&nbsp;&nbsp;"));
 				} else {
-					KeyButton b = new KeyButton(buttons[i][j]);
-					bList.add(b);
-
-					hp.add(b);
+					hp.add(new KeyButton(buttons[i][j]));
 				}
 			}
 			
@@ -107,6 +100,7 @@ public class Keyboard extends Composite
 		public KeyButton(String text) {
 			setText(text);
 			setHeight(buttonHeight);
+			setStylePrimaryName("gwt-Button2");
 			
 			if(text.length() < 2)
 				setWidth(buttonWidth);
