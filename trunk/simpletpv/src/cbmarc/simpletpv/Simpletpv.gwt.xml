@@ -16,7 +16,8 @@
   <inherits name="com.google.gwt.inject.Inject" />
   <inherits name='net.customware.gwt.dispatch.Dispatch' />
   <inherits name='net.customware.gwt.presenter.Presenter' />
-  <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
+  <!--  <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" /> -->
+  <inherits name="com.google.gwt.uibinder.UiBinder" />
   <inherits name='cbmarc.framework.Framework' />
   
   <!-- French language, independent of country -->
