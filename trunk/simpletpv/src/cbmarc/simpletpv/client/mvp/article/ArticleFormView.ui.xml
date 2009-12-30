@@ -3,22 +3,20 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
     xmlns:g='urn:import:com.google.gwt.user.client.ui'>
   
-  <g:HorizontalPanel>
-    <g:VerticalPanel>
-      <g:Label ui:field="labelLabel" />
-      <g:TextBox ui:field="labelTextBox" />
+  <g:HTMLPanel>
+      <div><b><g:Label ui:field="labelLabel" /></b></div>
+      <div><g:TextBox ui:field="labelTextBox" /></div>
     
-      <g:Label ui:field="descriptionLabel" />
-      <g:TextBox ui:field="descriptionTextBox" />
+      <div><b><g:Label ui:field="descriptionLabel" /></b></div>
+      <div><g:TextBox ui:field="descriptionTextBox" /></div>
     
-      <g:Label ui:field="priceLabel" />
-      <g:TextBox ui:field="priceTextBox" />
+      <div><b><g:Label ui:field="priceLabel" /></b></div>
+      <div><g:TextBox ui:field="priceTextBox" /></div>
     
       <g:HorizontalPanel>
         <g:Button ui:field="submitButton" />
         <g:Button ui:field="cancelButton" />
       </g:HorizontalPanel>
-    </g:VerticalPanel>
-  </g:HorizontalPanel>
+  </g:HTMLPanel>
 
 </ui:UiBinder>

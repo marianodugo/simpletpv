@@ -1,0 +1,9 @@
+<!-- MainView.ui.xml -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'
+	xmlns:m="urn:import:cbmarc.simpletpv.client.mvp">
+	
+  <m:TopView></m:TopView>
+
+</ui:UiBinder>

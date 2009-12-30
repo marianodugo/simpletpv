@@ -1,0 +1,12 @@
+<!-- TopView.ui.xml -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+  
+  <g:HTMLPanel>
+    <div class="top" style="text-align: right;">
+      <g:Anchor href='javascript:;' ui:field='loginLink' />
+    </div>
+  </g:HTMLPanel>
+
+</ui:UiBinder>
